@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import qs from "qs";
-import { switchActions } from 'actions';
+import { switchActions } from "actions";
 // @material-ui/core components
 import Grid from "@material-ui/core/Grid";
 import withStyles from "@material-ui/core/styles/withStyles";
@@ -21,9 +21,9 @@ import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
 // @material-ui/icons
 import Spa from "@material-ui/icons/Spa";
-import Person from "@material-ui/icons/Person"
-import AirlineSeatReclineNormal from "@material-ui/icons/AirlineSeatReclineNormal"
-import Hotel from "@material-ui/icons/Hotel"
+import Person from "@material-ui/icons/Person";
+import AirlineSeatReclineNormal from "@material-ui/icons/AirlineSeatReclineNormal";
+import Hotel from "@material-ui/icons/Hotel";
 
 // import avatar from "assets/img/faces/marc.jpg";
 import extendedFormsStyle from "assets/jss/material-dashboard-react/views/extendedFormsStyle.jsx";
@@ -55,135 +55,139 @@ class Interruptores extends React.Component {
     //we use this to make the card to appear after the page has been rendered
     this.state = {
       habitacionInvitados: false,
-      estadohabitacionInvitados: '',
-      lugarhabitacionInvitados: '',
+      estadohabitacionInvitados: "",
+      lugarhabitacionInvitados: "",
       habitacionOmar: false,
-      estadohabitacionOmar: '',
-      lugarhabitacionOmar: '',
+      estadohabitacionOmar: "",
+      lugarhabitacionOmar: "",
       living: false,
-      estadoliving: '',
-      lugarliving: '',
+      estadoliving: "",
+      lugarliving: "",
       patio: false,
-      estadopatio: '',
-      lugarpatio: '',
+      estadopatio: "",
+      lugarpatio: ""
     };
-    this.handleChange = this.handleChange.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    // this.handleBlur = this.handleBlur.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   setearSwitch(numeroSwitch, estadoSwitch) {
     const data = qs.stringify({
       num_gpio: numeroSwitch,
       estado: estadoSwitch === true ? 1 : 0
     });
-    switchActions.ObtenerSwitch(data)
-      .then((responseSwitch) => {
+    switchActions
+      .ObtenerSwitch(data)
+      .then(responseSwitch => {
         if (responseSwitch.data.status === "exito") {
-          var pin = responseSwitch.data.pin
+          var pin = responseSwitch.data.pin;
           switch (pin) {
             case "23":
-              this.setState({ estadohabitacionInvitados: responseSwitch.data.estado })
-              this.setState({ lugarhabitacionInvitados: responseSwitch.data.lugar })
-              break
+              this.setState({
+                estadohabitacionInvitados: responseSwitch.data.estado
+              });
+              this.setState({
+                lugarhabitacionInvitados: responseSwitch.data.lugar
+              });
+              break;
             case "24":
-              this.setState({ estadohabitacionOmar: responseSwitch.data.estado })
-              this.setState({ lugarhabitacionOmar: responseSwitch.data.lugar })
-              break
+              this.setState({
+                estadohabitacionOmar: responseSwitch.data.estado
+              });
+              this.setState({ lugarhabitacionOmar: responseSwitch.data.lugar });
+              break;
             case "8":
-              this.setState({ estadoliving: responseSwitch.data.estado })
-              this.setState({ lugarliving: responseSwitch.data.lugar })
-              break
+              this.setState({ estadoliving: responseSwitch.data.estado });
+              this.setState({ lugarliving: responseSwitch.data.lugar });
+              break;
             case "7":
-              this.setState({ estadopatio: responseSwitch.data.estado })
-              this.setState({ lugarpatio: responseSwitch.data.lugar })
-              break
+              this.setState({ estadopatio: responseSwitch.data.estado });
+              this.setState({ lugarpatio: responseSwitch.data.lugar });
+              break;
             default:
               console.log("Hubo un error");
           }
         }
       })
-      .catch((error) => {
-        console.log(error)
-      })
+      .catch(error => {
+        console.log(error);
+      });
   }
   handleChange(e) {
-    const { id, value } = e.target
-    var valor = "";;
+    const { id, value } = e.target;
+    var valor = "";
     switch (id) {
       case "estado":
-        valor = value
-        break
+        valor = value;
+        break;
       case "lugar":
-        valor = value
-        break
-      case 'habitacionInvitados':
-      case 'habitacionOmar':
-      case 'living':
-      case 'patio':
-        valor = e.target.checked
-        this.setearSwitch(value, valor)
-        break
+        valor = value;
+        break;
+      case "habitacionInvitados":
+      case "habitacionOmar":
+      case "living":
+      case "patio":
+        valor = e.target.checked;
+        this.setearSwitch(value, valor);
+        break;
       default:
         console.log("Hubo un error");
     }
-    this.setState({ [id]: valor })
+    this.setState({ [id]: valor });
   }
-  handleBlur(e) {
-
-  }
-  handleSubmit() {
-
-  }
+  // handleBlur(e) {}
+  handleSubmit() {}
   componentDidMount() {
-    switchActions.ObtenerEstadosSwitch()
-      .then((responseSwitch) => {
+    switchActions
+      .ObtenerEstadosSwitch()
+      .then(responseSwitch => {
         if (responseSwitch.data.status === "exito") {
-          responseSwitch.data.listaEstadosSwitch.forEach((prop) => {
-            var estado = prop.estado === "Luz Encendida" ? true : false
+          responseSwitch.data.listaEstadosSwitch.forEach(prop => {
+            var estado = prop.estado === "Luz Encendida" ? true : false;
             switch (prop.num_gpio) {
               case 23:
-                this.setState({ habitacionInvitados: estado })
-                this.setState({ estadohabitacionInvitados: prop.estado })
-                this.setState({ lugarhabitacionInvitados: prop.lugar })
-                break
+                this.setState({ habitacionInvitados: estado });
+                this.setState({ estadohabitacionInvitados: prop.estado });
+                this.setState({ lugarhabitacionInvitados: prop.lugar });
+                break;
               case 24:
-                this.setState({ habitacionOmar: estado })
-                this.setState({ estadohabitacionOmar: prop.estado })
-                this.setState({ lugarhabitacionOmar: prop.lugar })
-                break
+                this.setState({ habitacionOmar: estado });
+                this.setState({ estadohabitacionOmar: prop.estado });
+                this.setState({ lugarhabitacionOmar: prop.lugar });
+                break;
               case 8:
-                this.setState({ living: estado })
-                this.setState({ estadoliving: prop.estado })
-                this.setState({ lugarliving: prop.lugar })
-                break
+                this.setState({ living: estado });
+                this.setState({ estadoliving: prop.estado });
+                this.setState({ lugarliving: prop.lugar });
+                break;
               case 7:
-                this.setState({ patio: estado })
-                this.setState({ estadopatio: prop.estado })
-                this.setState({ lugarpatio: prop.lugar })
-                break
+                this.setState({ patio: estado });
+                this.setState({ estadopatio: prop.estado });
+                this.setState({ lugarpatio: prop.lugar });
+                break;
               default:
                 console.log("Hubo un error");
             }
-          })
+          });
         }
       })
-      .catch((error) => {
-        console.log(error)
-      })
+      .catch(error => {
+        console.log(error);
+      });
   }
-  componentWillUnmount() {
-
-  }
+  componentWillUnmount() {}
   render() {
     const { classes } = this.props;
-    const { estadohabitacionInvitados,
+    const {
+      estadohabitacionInvitados,
       lugarhabitacionInvitados,
       estadohabitacionOmar,
       lugarhabitacionOmar,
       estadoliving,
       lugarliving,
       estadopatio,
-      lugarpatio } = this.state;
+      lugarpatio
+    } = this.state;
     return (
       <div>
         <GridContainer>
@@ -193,18 +197,16 @@ class Interruptores extends React.Component {
                 <CardIcon color="danger">
                   <Hotel />
                 </CardIcon>
-                <h4 className={classes.cardIconTitle}>Lugar: {lugarhabitacionInvitados}</h4>
+                <h4 className={classes.cardIconTitle}>
+                  Lugar: {lugarhabitacionInvitados}
+                </h4>
               </CardHeader>
               <CardBody>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                     Estado: {estadohabitacionInvitados}
                   </GridItem>
-                  <Grid
-                    container
-                    alignItems="center"
-                    justify="center"
-                  >
+                  <Grid container alignItems="center" justify="center">
                     <GridItem xs={12} sm={12} md={2}>
                       <Switch
                         id="habitacionInvitados"
@@ -223,9 +225,7 @@ class Interruptores extends React.Component {
                   </Grid>
                 </GridContainer>
               </CardBody>
-              <CardFooter>
-
-              </CardFooter>
+              <CardFooter />
             </Card>
           </GridItem>
           <GridItem xs={12} sm={12} md={6}>
@@ -234,18 +234,16 @@ class Interruptores extends React.Component {
                 <CardIcon color="danger">
                   <Person />
                 </CardIcon>
-                <h4 className={classes.cardIconTitle}>Lugar: {lugarhabitacionOmar}</h4>
+                <h4 className={classes.cardIconTitle}>
+                  Lugar: {lugarhabitacionOmar}
+                </h4>
               </CardHeader>
               <CardBody>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={12}>
                     Estado: {estadohabitacionOmar}
                   </GridItem>
-                  <Grid
-                    container
-                    alignItems="center"
-                    justify="center"
-                  >
+                  <Grid container alignItems="center" justify="center">
                     <GridItem xs={12} sm={12} md={2}>
                       <Switch
                         id="habitacionOmar"
@@ -264,9 +262,7 @@ class Interruptores extends React.Component {
                   </Grid>
                 </GridContainer>
               </CardBody>
-              <CardFooter>
-
-              </CardFooter>
+              <CardFooter />
             </Card>
           </GridItem>
         </GridContainer>
@@ -284,11 +280,7 @@ class Interruptores extends React.Component {
                   <GridItem xs={12} sm={12} md={12}>
                     Estado: {estadopatio}
                   </GridItem>
-                  <Grid
-                    container
-                    alignItems="center"
-                    justify="center"
-                  >
+                  <Grid container alignItems="center" justify="center">
                     <GridItem xs={12} sm={12} md={2}>
                       <Switch
                         id="patio"
@@ -307,9 +299,7 @@ class Interruptores extends React.Component {
                   </Grid>
                 </GridContainer>
               </CardBody>
-              <CardFooter>
-
-              </CardFooter>
+              <CardFooter />
             </Card>
           </GridItem>
           <GridItem xs={12} sm={12} md={6}>
@@ -325,11 +315,7 @@ class Interruptores extends React.Component {
                   <GridItem xs={12} sm={12} md={12}>
                     Estado: {estadoliving}
                   </GridItem>
-                  <Grid
-                    container
-                    alignItems="center"
-                    justify="center"
-                  >
+                  <Grid container alignItems="center" justify="center">
                     <GridItem xs={12} sm={12} md={2}>
                       <Switch
                         id="living"
@@ -348,14 +334,12 @@ class Interruptores extends React.Component {
                   </Grid>
                 </GridContainer>
               </CardBody>
-              <CardFooter>
-
-              </CardFooter>
+              <CardFooter />
             </Card>
           </GridItem>
         </GridContainer>
       </div>
-    )
+    );
   }
 }
 

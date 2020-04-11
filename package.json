@@ -61,7 +61,10 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "eslint": "5.12.0",
+    "eslint-config-airbnb-base": "^14.1.0",
     "eslint-config-prettier": "4.0.0",
+    "eslint-plugin-import": "^2.20.2",
     "eslint-plugin-prettier": "3.0.1"
   }
 }

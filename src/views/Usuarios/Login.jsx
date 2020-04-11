@@ -11,132 +11,129 @@ import Snackbar from "components/Snackbar/Snackbar.jsx";
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
 // components
-import GridContainer from "components/Grid/GridContainer.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import Button from "components/CustomButtons/Button.jsx";
+import List from "@material-ui/core/List";
 import Card from "components/Card/Card.jsx";
+import ListItem from "@material-ui/core/ListItem";
 import CardBody from "components/Card/CardBody.jsx";
+import GridItem from "components/Grid/GridItem.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
+import Button from "components/CustomButtons/Button.jsx";
+import GridContainer from "components/Grid/GridContainer.jsx";
+import CustomInput from "components/CustomInput/CustomInput.jsx";
 import loginPageStyle from "assets/jss/material-dashboard-react/views/loginPageStyle.jsx";
 
-import { connect } from 'react-redux';
-import { userActions } from 'actions';
-import { validator } from 'helpers';
+import { connect } from "react-redux";
+import { userActions } from "actions";
+import { validator } from "helpers";
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     //reset login status
-    this.props.dispatch(userActions.logout())
+    this.props.dispatch(userActions.logout());
 
     this.state = {
       cardAnimaton: "cardHidden",
-      username: '',
-      password: '',
-      usernameState: '',
-      passwordState: '',
-      messageAlert: '',
+      username: "",
+      password: "",
+      usernameState: "",
+      passwordState: "",
+      messageAlert: "",
       tr: false,
-      lblRutUsuario: 'Rut Usuario'
+      lblRutUsuario: "Rut Usuario"
     };
-    this.handleChange = this.handleChange.bind(this)
-    this.handleBlur = this.handleBlur.bind(this)
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.handleKeyPress = this.handleKeyPress.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
   handleChange(e) {
-    const { id, value } = e.target
-    this.setState({ [id]: value })
+    const { id, value } = e.target;
+    this.setState({ [id]: value });
     let success = false;
-    if (id === 'username') {
+    if (id === "username") {
       var rutFormateado = validator.formatRut(value, false); //valida rut sin puntos ni guion
       if (validator.rutEsValido(rutFormateado)) {
         success = true;
         this.setState({ lblRutUsuario: "Rut Usuario" });
       }
-      // this.setState({ username: rutFormateado });     
+      // this.setState({ username: rutFormateado });
     }
-    if (id === 'password') {
+    if (id === "password") {
       if (validator.verifyRange(value, 6, 12)) {
         success = true;
       }
     }
     if (success) {
-      // this.setState({ username: rutFormateado }); 
+      // this.setState({ username: rutFormateado });
       this.setState({ [id + "State"]: "success" });
-    }
-    else {
+    } else {
       this.setState({ [id + "State"]: "error" });
     }
   }
   handleBlur(e) {
-    const { id, value } = e.target
-    if (id === 'username') {
+    const { id, value } = e.target;
+    if (id === "username") {
       let rutFormateado = validator.formatearRutConPuntos(value);
       if (validator.rutEsValido(rutFormateado)) {
         this.setState({ [id + "State"]: "success" });
         // this.setState({ messageUsername: "" });
         this.setState({ [id]: rutFormateado });
-      }
-      else {
+      } else {
         this.setState({ lblRutUsuario: "Rut incorrecto" });
         this.setState({ [id]: "" });
         this.setState({ [id + "State"]: "error" });
       }
       //this.setState({ [id]: rutFormateado });
     }
-    if (id === 'password' && value !== '') {
-      if (validator.verifyRange(value, 6, 12)) {     
+    if (id === "password" && value !== "") {
+      if (validator.verifyRange(value, 6, 12)) {
         if (!validator.verifyAlfanumeric(value)) {
           this.setState({ [id + "State"]: "error" });
-          this.setState({ messageAlert: 'Existen caracteres no validos en su clave, ingrese solo letras y numeros' });
-          this.showNotification('tr');
-        }
-        else {
+          this.setState({
+            messageAlert:
+              "Existen caracteres no validos en su clave, ingrese solo letras y numeros"
+          });
+          this.showNotification("tr");
+        } else {
           this.setState({ [id + "State"]: "success" });
-          this.setState({ messageAlert: '' });
+          this.setState({ messageAlert: "" });
         }
-      }
-      else {
+      } else {
         this.setState({ [id + "State"]: "error" });
       }
     }
   }
   handleKeyPress(e) {
-    if(e.key === 'Enter'){  
-      this.handleSubmit() 
-    } 
+    if (e.key === "Enter") {
+      this.handleSubmit();
+    }
   }
   handleSubmit() {
-    const { username, usernameState, password, passwordState } = this.state
-    const { dispatch } = this.props
+    const { username, usernameState, password, passwordState } = this.state;
+    const { dispatch } = this.props;
     if (usernameState === "success" && passwordState === "success") {
       if (username && password) {
-        let rutUsuario = username.replace(/[^0-9kK-]/g, "")
-        dispatch(userActions.fakeLoginApi(rutUsuario, password))
+        let rutUsuario = username.replace(/[^0-9kK-]/g, "");
+        dispatch(userActions.fakeLoginApi(rutUsuario, password));
       }
-    }
-    else {
-      if(username === '') {
+    } else {
+      if (username === "") {
         this.setState({ usernameState: "error" });
-        this.setState({ messageAlert: 'Ingrese rut de usuario' });
-        this.showNotification('tr');
-      }
-      else if (password === '') {
+        this.setState({ messageAlert: "Ingrese rut de usuario" });
+        this.showNotification("tr");
+      } else if (password === "") {
         this.setState({ passwordState: "error" });
-        this.setState({ messageAlert: 'Ingrese clave de usuario' });
-        this.showNotification('tr');
+        this.setState({ messageAlert: "Ingrese clave de usuario" });
+        this.showNotification("tr");
       }
     }
   }
   componentDidMount() {
     //we add a hidden class to the card and after 700 ms we delete it and the transition appears
     this.timeOutFunction = setTimeout(
-      function () {
+      function() {
         this.setState({ cardAnimaton: "" });
       }.bind(this),
       700
@@ -152,7 +149,7 @@ class Login extends React.Component {
       x[place] = true;
       this.setState(x);
       setTimeout(
-        function () {
+        function() {
           x[place] = false;
           this.setState(x);
         }.bind(this),
@@ -163,7 +160,14 @@ class Login extends React.Component {
   render() {
     const { classes } = this.props;
     const { loggingIn } = this.props;
-    const { username, usernameState, password, passwordState, messageAlert, lblRutUsuario } = this.state;
+    const {
+      username,
+      usernameState,
+      password,
+      passwordState,
+      messageAlert,
+      lblRutUsuario
+    } = this.state;
     return (
       <div className={classes.container}>
         <Snackbar
@@ -177,7 +181,7 @@ class Login extends React.Component {
         />
         <GridContainer justify="center">
           <GridItem xs={12} sm={6} md={4}>
-            <form>            
+            <form>
               <Card login className={classes[this.state.cardAnimaton]}>
                 <CardHeader
                   className={`${classes.cardHeader} ${classes.textCenter}`}
@@ -233,7 +237,15 @@ class Login extends React.Component {
                   />
                 </CardBody>
                 <CardFooter className={classes.justifyContentCenter}>
-                  <Button color="danger" simple size="lg" block onClick={() => { this.handleSubmit() }}>
+                  <Button
+                    color="danger"
+                    simple
+                    size="lg"
+                    block
+                    onClick={() => {
+                      this.handleSubmit();
+                    }}
+                  >
                     Ingresar
                   </Button>
                   {loggingIn}
@@ -244,7 +256,9 @@ class Login extends React.Component {
                       {/* <a href="/usuarios/solicitud-recuperacion-clave" className={classes.inputAdornmentIcon}>
                         Recuperar Clave
                       </a> */}
-                      <Link to="/solicitud-recuperacion-clave">Recuperar Clave</Link>
+                      <Link to="/solicitud-recuperacion-clave">
+                        Recuperar Clave
+                      </Link>
                     </ListItem>
                   </List>
                 </CardFooter>
@@ -267,5 +281,7 @@ function mapStateToProps(state) {
     loggingIn
   };
 }
-const connectedLogin = connect(mapStateToProps)(withStyles(loginPageStyle)(Login));
-export { connectedLogin as Login }; 
+const connectedLogin = connect(mapStateToProps)(
+  withStyles(loginPageStyle)(Login)
+);
+export { connectedLogin as Login };

@@ -1,23 +1,11 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import { authentication } from './authentication.reducer';
-// import { users } from './Arquitectura/users.reducer';
-import { alert } from './alert.reducer';
-// import { usuario } from './Arquitectura/usuario.reducer';
-// import { transaccion } from './Arquitectura/transaccion.reducer';
-// import { documento } from './Arquitectura/documento.reducer';
-// import { body } from './body.reducer';
-// import { header } from './header.reducer';
+import { alert } from "./alert.reducer";
+import { authentication } from "./authentication.reducer";
 
 const rootReducer = combineReducers({
+  alert,
   authentication
-//   , users
-  , alert
-//   , body
-//   , header
-//   , usuario
-//   , transaccion
-//   , documento
 });
 
 export default rootReducer;
