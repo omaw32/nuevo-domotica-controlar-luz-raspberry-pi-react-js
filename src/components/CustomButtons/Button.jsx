@@ -44,6 +44,10 @@ function RegularButton({ ...props }) {
   );
 }
 
+RegularButton.defaultProps = {
+  children: ""
+};
+
 RegularButton.propTypes = {
   classes: PropTypes.object.isRequired,
   color: PropTypes.oneOf([
@@ -66,7 +70,7 @@ RegularButton.propTypes = {
   className: PropTypes.string,
   // use this to pass the classes props from Material-UI
   muiClasses: PropTypes.object,
-  children: PropTypes.any
+  children: PropTypes.node
 };
 
 export default withStyles(buttonStyle)(RegularButton);
