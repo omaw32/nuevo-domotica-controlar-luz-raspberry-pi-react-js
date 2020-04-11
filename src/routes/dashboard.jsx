@@ -1,9 +1,9 @@
 // @material-ui/icons
-import Dashboard from "@material-ui/icons/Dashboard";
 import ToggleOn from "@material-ui/icons/ToggleOn";
+import Dashboard from "@material-ui/icons/Dashboard";
 // core components/views for Admin layout
-import DashboardPage from "views/Dashboard/Dashboard.jsx";
-import Interruptores from "views/Interruptores/Interruptores.jsx";
+import DashboardPage from "../views/Dashboard/Dashboard.jsx";
+import Interruptores from "../views/Interruptores/Interruptores.jsx";
 
 const dashboardRoutes = [
   {

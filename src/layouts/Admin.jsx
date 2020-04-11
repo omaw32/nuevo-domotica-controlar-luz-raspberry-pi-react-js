@@ -1,24 +1,21 @@
 /* eslint-disable */
 import React from "react";
 import PropTypes from "prop-types";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 // creates a beautiful scrollbar
 import PerfectScrollbar from "perfect-scrollbar";
 import "perfect-scrollbar/css/perfect-scrollbar.css";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import Navbar from "components/Navbars/Navbar.jsx";
-import Footer from "components/Footer/Footer.jsx";
-import Sidebar from "components/Sidebar/Sidebar.jsx";
-// import FixedPlugin from "components/FixedPlugin/FixedPlugin.jsx";
+import Footer from "../components/Footer/Footer.jsx"; 
+import Navbar from "../components/Navbars/Navbar.jsx";
+import Sidebar from "../components/Sidebar/Sidebar.jsx";
 
-import dashboardRoutes from "routes/dashboard.jsx";
+import dashboardRoutes from "../routes/dashboard.jsx";
 
-import dashboardStyle from "assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
-
-// import image from "assets/img/sidebar-2.jpg";
-import logo from "assets/img/reactlogo.png";
+import logo from "../assets/img/reactlogo.png";
+import dashboardStyle from "../assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
 
 const switchRoutes = (
   <Switch>
@@ -117,14 +114,6 @@ class Dashboard extends React.Component {
             <div className={classes.map}>{switchRoutes}</div>
           )}
           {this.getRoute() ? <Footer /> : null}
-          {/* <FixedPlugin
-            handleImageClick={this.handleImageClick}
-            handleColorClick={this.handleColorClick}
-            bgColor={this.state["color"]}
-            bgImage={this.state["image"]}
-            handleFixedClick={this.handleFixedClick}
-            fixedClasses={this.state.fixedClasses}
-          /> */}
         </div>
       </div>
     );
