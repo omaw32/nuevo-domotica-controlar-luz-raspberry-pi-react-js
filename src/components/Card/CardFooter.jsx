@@ -8,7 +8,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 // @material-ui/icons
 
 // core components
-import cardFooterStyle from "assets/jss/material-dashboard-react/components/cardFooterStyle.jsx";
+import cardFooterStyle from "../../assets/jss/material-dashboard-react/components/cardFooterStyle.jsx";
 
 function CardFooter({ ...props }) {
   const {
@@ -42,7 +42,8 @@ CardFooter.propTypes = {
   plain: PropTypes.bool,
   profile: PropTypes.bool,
   stats: PropTypes.bool,
-  chart: PropTypes.bool
+  chart: PropTypes.bool,
+  children: PropTypes.any
 };
 
 export default withStyles(cardFooterStyle)(CardFooter);

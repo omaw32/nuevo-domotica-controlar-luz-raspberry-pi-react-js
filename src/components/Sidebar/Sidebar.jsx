@@ -1,20 +1,19 @@
 import React from "react";
-import classNames from "classnames";
 import PropTypes from "prop-types";
+import classNames from "classnames";
 import { NavLink } from "react-router-dom";
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
+import List from "@material-ui/core/List";
+import Icon from "@material-ui/core/Icon";
 import Drawer from "@material-ui/core/Drawer";
 import Hidden from "@material-ui/core/Hidden";
-import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Icon from "@material-ui/core/Icon";
+import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-// import AdminNavbarLinks from "components/Navbars/AdminNavbarLinks.jsx";
-import RTLNavbarLinks from "components/Navbars/RTLNavbarLinks.jsx";
+import RTLNavbarLinks from "../../components/Navbars/RTLNavbarLinks.jsx";
 
-import sidebarStyle from "assets/jss/material-dashboard-react/components/sidebarStyle.jsx";
+import sidebarStyle from "../../assets/jss/material-dashboard-react/components/sidebarStyle.jsx";
 
 const Sidebar = ({ ...props }) => {
   // verifies if routeName is the one active (in browser input)
@@ -64,9 +63,7 @@ const Sidebar = ({ ...props }) => {
                 />
               )}
               <ListItemText
-                primary={
-                  props.rtlActive ? prop.rtlName : prop.name
-                }
+                primary={props.rtlActive ? prop.rtlName : prop.name}
                 className={classNames(classes.itemText, whiteFontClasses, {
                   [classes.itemTextRTL]: props.rtlActive
                 })}
@@ -112,7 +109,8 @@ const Sidebar = ({ ...props }) => {
         >
           {brand}
           <div className={classes.sidebarWrapper}>
-            {props.rtlActive ? <RTLNavbarLinks /> : null} {/* <AdminNavbarLinks /> */}
+            {props.rtlActive ? <RTLNavbarLinks /> : null}{" "}
+            {/* <AdminNavbarLinks /> */}
             {links}
           </div>
           {image !== undefined ? (
@@ -149,7 +147,16 @@ const Sidebar = ({ ...props }) => {
 };
 
 Sidebar.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  rtlActive: PropTypes.any,
+  handleDrawerToggle: PropTypes.any,
+  open: PropTypes.any,
+  location: PropTypes.any,
+  color: PropTypes.any,
+  logo: PropTypes.any,
+  image: PropTypes.any,
+  logoText: PropTypes.any,
+  routes: PropTypes.any
 };
 
 export default withStyles(sidebarStyle)(Sidebar);

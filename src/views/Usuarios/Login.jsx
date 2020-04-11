@@ -1,31 +1,30 @@
 import React from "react";
 import PropTypes from "prop-types";
-//import cx from "classnames";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 // @material-ui/core components
-import withStyles from "@material-ui/core/styles/withStyles";
-import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 import AddAlert from "@material-ui/icons/AddAlert";
-import Snackbar from "components/Snackbar/Snackbar.jsx";
+import withStyles from "@material-ui/core/styles/withStyles";
+import InputAdornment from "@material-ui/core/InputAdornment";
 // @material-ui/icons
 import Face from "@material-ui/icons/Face";
 // components
 import List from "@material-ui/core/List";
-import Card from "components/Card/Card.jsx";
 import ListItem from "@material-ui/core/ListItem";
-import CardBody from "components/Card/CardBody.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import CardFooter from "components/Card/CardFooter.jsx";
-import Button from "components/CustomButtons/Button.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-import CustomInput from "components/CustomInput/CustomInput.jsx";
-import loginPageStyle from "assets/jss/material-dashboard-react/views/loginPageStyle.jsx";
+import Card from "../../components/Card/Card.jsx";
+import CardBody from "../../components/Card/CardBody.jsx";
+import GridItem from "../../components/Grid/GridItem.jsx";
+import CardHeader from "../../components/Card/CardHeader.jsx";
+import CardFooter from "../../components/Card/CardFooter.jsx";
+import Snackbar from "../../components/Snackbar/Snackbar.jsx";
+import Button from "../../components/CustomButtons/Button.jsx";
+import GridContainer from "../../components/Grid/GridContainer.jsx";
+import CustomInput from "../../components/CustomInput/CustomInput.jsx";
+import loginPageStyle from "../../assets/jss/material-dashboard-react/views/loginPageStyle.jsx";
 
-import { connect } from "react-redux";
-import { userActions } from "actions";
-import { validator } from "helpers";
+import { userActions } from "../../actions";
+import { validator } from "../../helpers";
 
 class Login extends React.Component {
   constructor(props) {
@@ -272,7 +271,9 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  loggingIn: PropTypes.any,
+  dispatch: PropTypes.any
 };
 
 function mapStateToProps(state) {

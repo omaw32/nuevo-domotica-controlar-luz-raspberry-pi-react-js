@@ -1,7 +1,7 @@
-import { userConstants, estadoUsuarioConstants } from "../constants";
 import axios from "axios";
-import { alertActions } from "actions";
 import { history } from "../helpers";
+import { alertActions } from "../actions";
+import { userConstants, estadoUsuarioConstants } from "../constants";
 
 export const userActions = {
   login,
@@ -60,7 +60,6 @@ function login(username, password) {
   function success(user) {
     return { type: userConstants.LOGIN_SUCCESS, user };
   }
-  //function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 }
 
 function logout() {
@@ -73,10 +72,8 @@ function loginApi(username, password) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    //body: JSON.stringify({ grant_type, username, password })
     body: "grant_type=password&Username=" + username + "&Password=" + password
   };
-  //return fetch(`${config.apiUrl}/users/authenticate`, requestOptions)
   const urlApi = "configConstants.API_GATEWAY_LOGIN_ENDPOINT";
   const apiGatewayEndpointPath = "configConstants.API_GATEWAY_ENDPOINT_PATH";
   return fetch(`${urlApi}`, requestOptions)

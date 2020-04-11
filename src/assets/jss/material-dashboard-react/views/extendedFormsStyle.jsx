@@ -2,9 +2,9 @@
 // // // ExtendedForms view styles
 // #############################
 
-import { cardTitle } from "assets/jss/material-dashboard-react.jsx";
+import { cardTitle } from "../../../../assets/jss/material-dashboard-react.jsx";
 // import customSelectStyle from "assets/jss/material-dashboard-pro-react/customSelectStyle.jsx";
-import customCheckboxRadioSwitch from "assets/jss/material-dashboard-react/customCheckboxRadioSwitch.jsx";
+import customCheckboxRadioSwitch from "../../../../assets/jss/material-dashboard-react/customCheckboxRadioSwitch.jsx";
 
 const extendedFormsStyle = {
 ...customCheckboxRadioSwitch,

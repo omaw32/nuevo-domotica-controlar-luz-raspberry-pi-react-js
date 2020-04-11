@@ -1,4 +1,4 @@
-import Dashboard from "layouts/Admin.jsx";
+import Dashboard from "../layouts/Admin.jsx";
 
 var indexRoutes = [{ path: "/", name: "Home", component: Dashboard }];
 

@@ -1,14 +1,14 @@
 import React from "react";
-import { Login } from "views";
+import { Login } from "../views";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { alertActions } from "actions";
-import indexRoutes from "routes/index.jsx";
-import { history, PrivateRoute } from "helpers";
+import { alertActions } from "../actions";
+import indexRoutes from "../routes/index.jsx";
+import { history, PrivateRoute } from "../helpers";
 import AddAlert from "@material-ui/icons/AddAlert";
-import Snackbar from "components/Snackbar/Snackbar.jsx";
+import Snackbar from "../components/Snackbar/Snackbar.jsx";
 import { Router, Route, Switch } from "react-router-dom";
-import setAuthorizationToken from "helpers/setAuthorizationToken";
+import setAuthorizationToken from "../helpers/setAuthorizationToken";
 class App extends React.Component {
   constructor(props) {
     super(props);

@@ -18,27 +18,27 @@ import AccessTime from "@material-ui/icons/AccessTime";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import Accessibility from "@material-ui/icons/Accessibility";
 // core components
-import Card from "components/Card/Card.jsx";
-import Table from "components/Table/Table.jsx";
-import Tasks from "components/Tasks/Tasks.jsx";
-import CardIcon from "components/Card/CardIcon.jsx";
-import CardBody from "components/Card/CardBody.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import Danger from "components/Typography/Danger.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-import CardFooter from "components/Card/CardFooter.jsx";
-import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
+import Card from "../../components/Card/Card.jsx";
+import Table from "../../components/Table/Table.jsx";
+import Tasks from "../../components/Tasks/Tasks.jsx";
+import CardIcon from "../../components/Card/CardIcon.jsx";
+import CardBody from "../../components/Card/CardBody.jsx";
+import GridItem from "../../components/Grid/GridItem.jsx";
+import Danger from "../../components/Typography/Danger.jsx";
+import CardHeader from "../../components/Card/CardHeader.jsx";
+import CardFooter from "../../components/Card/CardFooter.jsx";
+import CustomTabs from "../../components/CustomTabs/CustomTabs.jsx";
+import GridContainer from "../../components/Grid/GridContainer.jsx";
 
-import { bugs, website, server } from "variables/general.jsx";
+import { bugs, website, server } from "../../variables/general.jsx";
 
 import {
   dailySalesChart,
   emailsSubscriptionChart,
   completedTasksChart
-} from "variables/charts.jsx";
+} from "../../variables/charts.jsx";
 
-import dashboardStyle from "assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
+import dashboardStyle from "../../assets/jss/material-dashboard-react/views/dashboardStyle.jsx";
 
 class Dashboard extends React.Component {
   state = {

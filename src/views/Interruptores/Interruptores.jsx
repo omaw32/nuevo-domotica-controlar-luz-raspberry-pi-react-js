@@ -1,32 +1,26 @@
+import qs from "qs";
 import React from "react";
 import PropTypes from "prop-types";
-import qs from "qs";
-import { switchActions } from "actions";
+import { switchActions } from "../../actions";
 // @material-ui/core components
 import Grid from "@material-ui/core/Grid";
-import withStyles from "@material-ui/core/styles/withStyles";
-// import InputLabel from "@material-ui/core/InputLabel";
 import Switch from "@material-ui/core/Switch";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
+import withStyles from "@material-ui/core/styles/withStyles";
 // core components
-import CardIcon from "components/Card/CardIcon.jsx";
-import GridItem from "components/Grid/GridItem.jsx";
-import GridContainer from "components/Grid/GridContainer.jsx";
-// import CustomInput from "components/CustomInput/CustomInput.jsx";
-// import Button from "components/CustomButtons/Button.jsx";
-import Card from "components/Card/Card.jsx";
-import CardHeader from "components/Card/CardHeader.jsx";
-// import CardAvatar from "components/Card/CardAvatar.jsx";
-import CardBody from "components/Card/CardBody.jsx";
-import CardFooter from "components/Card/CardFooter.jsx";
+import Card from "../../components/Card/Card.jsx";
+import CardIcon from "../../components/Card/CardIcon.jsx";
+import GridItem from "../../components/Grid/GridItem.jsx";
+import CardBody from "../../components/Card/CardBody.jsx";
+import CardHeader from "../../components/Card/CardHeader.jsx";
+import CardFooter from "../../components/Card/CardFooter.jsx";
+import GridContainer from "../../components/Grid/GridContainer.jsx";
 // @material-ui/icons
 import Spa from "@material-ui/icons/Spa";
+import Hotel from "@material-ui/icons/Hotel";
 import Person from "@material-ui/icons/Person";
 import AirlineSeatReclineNormal from "@material-ui/icons/AirlineSeatReclineNormal";
-import Hotel from "@material-ui/icons/Hotel";
 
-// import avatar from "assets/img/faces/marc.jpg";
-import extendedFormsStyle from "assets/jss/material-dashboard-react/views/extendedFormsStyle.jsx";
+import extendedFormsStyle from "../../assets/jss/material-dashboard-react/views/extendedFormsStyle.jsx";
 
 const styles = {
   ...extendedFormsStyle,

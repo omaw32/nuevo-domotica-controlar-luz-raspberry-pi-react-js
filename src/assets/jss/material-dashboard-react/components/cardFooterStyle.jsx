@@ -1,4 +1,4 @@
-import { grayColor } from "assets/jss/material-dashboard-react.jsx";
+import { grayColor } from "../../../../assets/jss/material-dashboard-react.jsx";
 
 const cardFooterStyle = {
   cardFooter: {
